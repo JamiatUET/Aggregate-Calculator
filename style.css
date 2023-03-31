@@ -144,7 +144,8 @@ body{
     }
     .center{
         width: 100%;
-        border: none;
+        border: transparent 0px solid;
+        border-radius: 0px;
     }
     .center h1{
         font-size: 18px;
