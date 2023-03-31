@@ -48,8 +48,23 @@
             </div>            
         </form>
     </div>
+    <div id="preloader"></div>
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        "use strict";
+
+        /**
+        * Preloader
+        */
+        const preloader = document.querySelector('#preloader');
+        if (preloader) {
+            window.addEventListener('load', () => {
+                preloader.remove();
+            });
+        }
+    });
     function ResetForm(){
         var allInputs = document.querySelectorAll('input');
         allInputs.forEach((allInput) => {
