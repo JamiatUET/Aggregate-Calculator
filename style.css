@@ -144,6 +144,7 @@ body{
     }
     .center{
         width: 100%;
+        border: none;
     }
     .center h1{
         font-size: 18px;
