@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="./Resources/IJT_Logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UET Jamiat | Aggrigate Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="social-media">
+        <a href="https://www.facebook.com/UETJamiatOfficial" target="_blank">
+            <img src="./Resources/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://twitter.com/UET_Jamiat" target="_blank">
+            <img src="./Resources/twitter.png" alt="Twitter">
+        </a>
+        <div>Like, Share and Follow</div>
+    </div>
+    <div class="center">
+        <h1>
+            <br>
+            <img src="./Resources/IJT_Logo.png" id="IJTLogo" alt="IJT">
+            <img src="./Resources/UET_Logo.png" id="UETLogo" alt="UET">
+            <br>
+            Islami Jamiat Talba <br> University of Engineering and Technology
+        </h1>
+        <form>
+            <!-- <center><h2>Aggrigate Calculator</h2></center> -->
+            <div>
+                <input type="radio" name="type" id="PEC" value="PEC accredited programs" onclick="PECForm()">
+                <label for="PEC">PEC accredited programs</label>
+                <br>
+
+                <input type="radio" name="type" id="non-PEC" value="non PEC programs" onclick="PECForm()">
+                <label for="non-PEC">non PEC programs</label>
+                <br>
+
+                <input type="radio" name="type" id="non-ECAT" value="non ECAT Programs" onclick="nonECATForm()">
+                <label for="non-ECAT">non ECAT Programs</label>
+            </div>
+            <div id="form"></div>
+            <label id="label"></label>
+            <div class="buttons">
+                <input type="button" class="resetBtn" value="Reset" onclick="ResetForm()">
+                <input type="button" class="submitBtn" value="Calculate" onclick="FindAggrigate()">
+            </div>            
+        </form>
+    </div>
+</body>
+<script>
+    function ResetForm(){
+        var allInputs = document.querySelectorAll('input');
+        allInputs.forEach((allInput) => {
+            if(allInput.id === 'matric' || allInput.id === 'inter' || allInput.id === 'ECAT'){
+                allInput.value = "";
+            }
+        })
+
+        var label = document.getElementById('label');
+        label.innerText = '';
+    }
+    function FindAggrigate(){
+        if(document.getElementById('PEC').checked){
+            PECAggrigate();
+        }
+        else if(document.getElementById('non-PEC').checked){
+            NonPECAggrigate();
+        }
+        else if(document.getElementById('non-ECAT').checked){
+            NonECATAggrigate();
+        }
+    }
+    function PECAggrigate(){
+        var matric = parseInt(document.getElementById('matric').value);
+        var inter = parseInt(document.getElementById('inter').value);
+        var totalInter = parseInt(document.getElementById('total-inter').value);
+        var ECAT = parseInt(document.getElementById('ECAT').value);
+        if(matric >= 0 && matric <= 1100 && inter >= 0 && inter <= totalInter && ECAT >= 0 && ECAT <= 400 && (totalInter === 520 || totalInter === 510 || totalInter === 505)){
+            var aggrigate = (inter/totalInter*50) + (matric/1100*17) + (ECAT/400*33);
+            aggrigate = aggrigate.toFixed(3);
+            var text = "Your Aggrigate is: " + aggrigate + "%";
+
+            var label = document.getElementById('label');
+            label.innerText = text;
+            label.style.color = 'red';
+            label.style.fontSize = '20px'
+
+            var allInputs = document.querySelectorAll('input');
+            allInputs.forEach((allInput) => {
+                if(allInput.id === 'matric' || allInput.id === 'inter' || allInput.id === 'total-inter' || allInput.id === 'ECAT'){
+                    allInput.value = "";
+                }
+            })
+        }
+        else{
+            var text = "Please Enter the valid value";
+            var label = document.getElementById('label');
+            label.innerText = text
+            label.style.color = 'red';
+            label.style.fontSize = '20px'
+        }
+    }
+    function NonPECAggrigate(){
+        var matric = parseInt(document.getElementById('matric').value);
+        var inter = parseInt(document.getElementById('inter').value);
+        var totalInter = parseInt(document.getElementById('total-inter').value);
+        var ECAT = parseInt(document.getElementById('ECAT').value);
+        if(matric >= 0 && matric <= 1100 && inter >= 0 && inter <= totalInter && ECAT >= 0 && ECAT <= 400 && (totalInter === 520 || totalInter === 510 || totalInter === 505)){
+            var aggrigate = (inter/totalInter*45) + (matric/1100*25) + (ECAT/400*30);
+            aggrigate = aggrigate.toFixed(3);
+            var text = "Your Aggrigate is: " + aggrigate + "%";
+
+            var label = document.getElementById('label');
+            label.innerText = text;
+            label.style.color = 'red';
+            label.style.fontSize = '20px'
+
+            var allInputs = document.querySelectorAll('input');
+            allInputs.forEach((allInput) => {
+                if(allInput.id === 'matric' || allInput.id === 'inter' || allInput.id === 'total-inter' || allInput.id === 'ECAT'){
+                    allInput.value = "";
+                }
+            })
+        }
+        else{
+            var text = "Please Enter the valid value";
+            var label = document.getElementById('label');
+            label.innerText = text
+            label.style.color = 'red';
+            label.style.fontSize = '20px'
+        }
+    }
+    function NonECATAggrigate(){
+        var matric = parseInt(document.getElementById('matric').value);
+        var inter = parseInt(document.getElementById('inter').value);
+        var totalInter = parseInt(document.getElementById('total-inter').value);
+        if(matric >= 0 && matric <= 1100 && inter >= 0 && inter <= totalInter && (totalInter === 520 || totalInter === 510 || totalInter === 505)){
+            var aggrigate = (inter/totalInter*75) + (matric/1100*25);
+            aggrigate = aggrigate.toFixed(3);
+            var text = "Your Aggrigate is: " + aggrigate + "%";
+
+            var label = document.getElementById('label');
+            label.innerText = text;
+            label.style.color = 'red';
+            label.style.fontSize = '20px'
+
+            var allInputs = document.querySelectorAll('input');
+            allInputs.forEach((allInput) => {
+                if(allInput.id === 'matric' || allInput.id === 'inter' || allInput.id === 'total-inter' || allInput.id === 'ECAT'){
+                    allInput.value = "";
+                }
+            })
+        }
+        else{
+            var text = "Please Enter the valid value";
+            var label = document.getElementById('label');
+            label.innerText = text
+            label.style.color = 'red';
+            label.style.fontSize = '20px'
+        }
+    }
+    function PECForm(){
+        form = document.getElementById('form');
+        removeAllChildNodes(form)
+        matric = CreateSection('matric', 'Matric Marks')
+        inter = CreateSection('inter', 'Part-1 Marks')
+        totalInter = CreateSection('total-inter', 'Total Part-1 Marks')
+        ECAT = CreateSection('ECAT', 'ECAT Marks')
+        form.appendChild(matric)
+        form.appendChild(inter)
+        form.appendChild(totalInter)
+        form.appendChild(ECAT)
+    }
+    function nonECATForm(){
+        form = document.getElementById('form');
+        removeAllChildNodes(form)
+        matric = CreateSection('matric', 'Matric Marks')
+        inter = CreateSection('inter', 'Intermediate Marks')
+        totalInter = CreateSection('total-inter', 'Total Part-1 Marks')
+        form.appendChild(matric)
+        form.appendChild(inter)
+        form.appendChild(totalInter)
+    }
+    function CreateSection(id, text){
+        txtField = document.createElement('div');
+        txtField.classList.add('txt_field');
+        input = document.createElement('input');
+        input.id = id;
+        input.type = 'number';
+        txtField.appendChild(input);
+        span = document.createElement('span');
+        txtField.appendChild(span);
+        label = document.createElement('label');
+        label.innerText = text;
+        txtField.appendChild(label);
+        return txtField;
+    }
+    function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+</script>
+</html>
